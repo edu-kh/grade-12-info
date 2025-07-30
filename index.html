@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Battambang&family=Moul&display=swap" rel="stylesheet">
+  <title>ព័ត៌មានសិស្សទិ១២</title>
+  
+  <style>
+    body {
+     font-family: "Segoe UI", sans-serif,  "Moul";
+      background-color: rgb(216, 236, 253);
+      margin: 0;
+      padding: 20px;
+      font-weight: 400;
+      font-style: normal;
+    }
+    form {
+       background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 20px;
+      max-width: 800px;
+      margin: 0px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+     .form-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 2rem;
+      
+    }
+     .form-header h2 {
+     font-size: 0.96rem;
+    }
+    
+    .logo {
+      height: 50px;
+    }
+    .form-header {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .triple > label {
+      flex: 1 1 30%;
+    }
+    label {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      font-weight: normal;
+    }
+    input, select {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+       font-family: "Battambang", system-ui;
+        font-size: 1rem;
+    }
+    .options {
+      display: flex;
+      gap: 15px;
+      margin-top: 5px;
+    }
+    .square-radio input[type="radio"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #555;
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 3px;
+      position: relative;
+    }
+    .square-radio input[type="radio"]:checked::after {
+      content: "✅";
+      position: absolute;
+      top: -8px;
+      left: -4px;
+      color: green;
+      font-size: 18px;
+      font-style: bold;
+    }
+      .form-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+       font-family: "Battambang", system-ui;
+    }
+
+     .btn-save{
+      background: linear-gradient(to right, #02a8d6, #0467e0);
+     }
+
+      .btn-clear {
+      background: linear-gradient(to right, #717d80, #a48c7f);
+     }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+    #status {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: normal;
+      color: green;
+    }
+    @media (max-width: 600px) {
+      .form-buttons {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form id="signupForm">
+    <div class="form-header">
+      <img src="moeys.png" alt="Logo" class="logo">
+     <h2 class="sitename">ព័ត៌មានសិស្ស<span class="auto-input ti"></span></h2>
+    </div>
+    <div class="form-row">
+      <label>ឈ្មោះសិស្ស<input type="text" name="name" placeholder="នាមត្រកូល នាមខ្លួន" required></label>
+      <label>
+        <div class="options">ភេទ
+          <label class="square-radio">ប្រុស<input type="radio" name="sex" value="ប្រុស" required></label>
+          <label class="square-radio">ស្រី<input type="radio" name="sex" value="ស្រី"></label>
+        </div>
+      </label>
+    </div>
+    <div class="form-row">
+      <label>ថ្ងៃខែឆ្នាំកំណើត<input type="text" name="dob" placeholder="ថ្ងៃ / ខែ / ឆ្នាំ" required></label>
+      <label>ទីកន្លែងកំណើត<input type="text" name="pob" placeholder="ខេត្ត ឬ ក្រុង" required></label>
+    </div>
+    <div class="form-row">
+      <label>រៀនថ្នាក់ទី
+        <select name="grade">
+           <option value="" required>ជ្រើសរើស</option>
+        <option>12A</option>
+        <option>12B</option>
+        <option>12C</option>
+        <option>12D</option>
+        <option>12E</option>
+        <option>12F</option>
+        </select>
+      </label>
+      <label>
+        <div class="options">ភាសា
+          <label class="square-radio">អង់គ្លេស<input type="radio" name="language" value="អង់គ្លេស" required></label>
+          <label class="square-radio">បារាំង<input type="radio" name="language" value="បារាំង"></label>
+        </div>
+      </label>
+    </div>
+    <div class="form-row triple">
+      <label>សម័យប្រឡងបឋមភូមិ<input type="text" name="date_exam" placeholder="ថ្ងៃ / ខែ / ឆ្នាំ" required></label>
+      <label>លេខបន្ទប់<input type="text" name="room_no" required></label>
+      <label>លេខតុ<input type="text" name="table_no" required></label>
+    </div>
+    <div class="form-row">
+      <label>ឈ្មោះឪពុក<input type="text" name="father_name" required></label>
+      <label>មុខរបរឪពុក<input type="text" name="father_job" required></label>
+    </div>
+    <div class="form-row">
+      <label>ឈ្មោះម្ដាយ<input type="text" name="mother_name" required></label>
+      <label>មុខរបរម្ដាយ<input type="text" name="mother_job" required></label>
+    </div>
+    <div class="form-row">
+      <label>លេខទូរសព្ទផ្ទាល់ខ្លួន<input type="tel" name="phone" required></label>
+      <label>រូបថតសំបុត្រកំណើត<input type="file" name="image" accept=".png, .jpg, .jpeg" required></label>
+    </div>
+    <div class="form-buttons">
+        <button type="reset" class="btn-clear">សម្អាត</button>
+      <button type="submit" class="btn-save">រក្សាទុក</button>
+    </div>
+    <p id="status"></p>
+  </form>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById("status");
+      status.textContent = "កំពុងរក្សាទុក...";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwIKjbdkSJct3547IULcppVjRH_OQ90acZBzHjKByy-XQo_rd9eapzju0kkBHu_fs6w/exec", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.text();
+        if (response.ok) {
+          status.textContent = "✅ រក្សាទុករួចរាល់!";
+          form.reset();
+        } else {
+          status.textContent = "❌ Error: " + result;
+        }
+      } catch (error) {
+        status.textContent = "Error: " + error.message;
+      }
+    });
+  </script>
+  <!-- sitename-->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+      var tyed = new Typed(".auto-input",{
+      strings: [" នៃវិទ្យាល័យហ៊ុនសែនមិត្តភាព", "សម្រាប់ការប្រឡងសញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ"],
+      typeSpeed: 150,
+      
+      loop: true
+  })
+  </script>
+</body>
+</html>
