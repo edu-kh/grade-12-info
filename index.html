@@ -242,11 +242,11 @@
         </div>
       </label>
     </div>
-    <div class="form-row triple">
+   <div class="form-row triple">
       <label>សម័យប្រឡងបឋមភូមិ<input type="text" name="date_exam" placeholder="ថ្ងៃ / ខែ / ឆ្នាំ" required></label>
       <label>លេខបន្ទប់<input type="number" name="room_no" required></label>
       <label>លេខតុ<input type="number" name="table_no" required></label>
-    </div>
+    </div> 
     <div class="form-row">
       <label>ឈ្មោះឪពុក<input type="text" name="father_name" required></label>
       <label>មុខរបរឪពុក<input type="text" name="father_job" required></label>
@@ -335,7 +335,7 @@ if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|p
   const fileNameSpan = document.getElementById("file-name");
 
   if (input.files && input.files[0]) {
-    fileNameSpan.textContent = "​បានជ្រើសសរូបភាពរួច ✅";
+    fileNameSpan.textContent = "​បានជ្រើសរូបភាពហើយ ✅";
     fileNameSpan.style.color = "green"; // ✅ Set to green when selected
   } else {
     fileNameSpan.textContent = "មិនទាន់ជ្រើសរូបភាព";
