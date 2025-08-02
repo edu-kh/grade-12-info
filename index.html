@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Battambang&family=Moul&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>ព័ត៌មានសិស្សទិ១២</title>
   
   <style>
@@ -108,20 +109,14 @@
       border: none;
       border-radius: 10px;
       
-      color: white;
+      color: rgb(231, 230, 230);
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s ease;
        font-family: "Battambang", system-ui;
     }
 
-     .btn-save{
-      background: linear-gradient(to right, #02a8d6, #0467e0);
-     }
-
-      .btn-clear {
-      background: linear-gradient(to right, #717d80, #a48c7f);
-     }
+     
 
     button:hover {
       transform: translateY(-2px);
@@ -137,6 +132,76 @@
         flex-direction: row;
       }
     }
+     .custom-file-input {
+    display: none;
+  }
+
+  .custom-file-label {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: rgb(223, 223, 223);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Battambang", system-ui;
+    height: 30px;
+  }
+ .custom-file-label:hover {
+      transform: translateY(-2px);
+    }
+
+  .filename-display {
+    margin-left: 10px;
+    font-family: "Battambang", system-ui;
+    font-size: 0.95rem;
+  }
+  .btn3d {
+	position: relative;
+	top: -6px;
+	border: 0;
+	transition: all 40ms linear;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.btn3d:active:focus,
+.btn3d:focus:hover,
+.btn3d:focus {
+	-moz-outline-style: none;
+	outline: medium none;
+}
+
+.btn3d:active,
+.btn3d.active {
+	top: 2px;
+}
+.btn3d.btn-success {
+	box-shadow: 0 0 0 1px #31c300 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #5eb924, 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+	background-color: #42a302;
+}
+
+.btn3d.btn-success:active,
+.btn3d.btn-success.active {
+	box-shadow: 0 0 0 1px #30cd00 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+	background-color: #42a302;
+}
+
+.btn3d.btn-default {
+	color: #666666;
+	box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255, 255, 255, 0.10) inset, 0 8px 0 0 #BEBEBE, 0 8px 8px 1px rgba(0, 0, 0, .2);
+		background-color: #bab8b8;
+}
+
+.btn3d.btn-default:active,
+.btn3d.btn-default.active {
+	color: #ffffff;
+	box-shadow: 0 0 0 1px #ebebeb inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, .1);
+	background-color: #bab8b8;
+}
+
+
   </style>
 </head>
 <body>
@@ -146,11 +211,11 @@
      <h2 class="sitename">ព័ត៌មានសិស្ស<span class="auto-input ti"></span></h2>
     </div>
     <div class="form-row">
-      <label>ឈ្មោះសិស្ស<input type="text" name="name" placeholder="នាមត្រកូល នាមខ្លួន" required></label>
+      <label>ឈ្មោះសិស្ស<input type="text" name="name"  placeholder="នាមត្រកូល នាមខ្លួន" required></label>
       <label>
-        <div class="options">ភេទ
-          <label class="square-radio">ប្រុស<input type="radio" name="sex" value="ប្រុស" required></label>
-          <label class="square-radio">ស្រី<input type="radio" name="sex" value="ស្រី"></label>
+        <div class="options" id="sex">ភេទ
+          <label class="square-radio" >ប្រុស<input type="radio" name="sex" value="ប្រុស"   required></label>
+          <label class="square-radio"  >ស្រី<input type="radio" name="sex" value="ស្រី" ></label>
         </div>
       </label>
     </div>
@@ -192,13 +257,21 @@
     </div>
     <div class="form-row">
       <label>លេខទូរសព្ទផ្ទាល់ខ្លួន<input type="tel" name="phone" required></label>
-      <label>រូបថតសំបុត្រកំណើត<input type="file" name="image" accept=".png, .jpg, .jpeg" required></label>
+     <div> <label>រូបថតសំបុត្រកំណើត</label>
+      <label class="custom-file-label">
+  ជ្រើសរូបភាព <i class="fa-regular fa-image"></i>
+  <input type="file" name="image" class="custom-file-input" accept=".jpg,.jpeg,.png" required onchange="showFileName(this)">
+</label>
+<span class="filename-display" id="file-name" style="color:red">មិនទាន់ជ្រើសរូបភាព</span>
+</div>
     </div>
     <div class="form-buttons">
-        <button type="reset" class="btn-clear">សម្អាត</button>
-      <button type="submit" class="btn-save">រក្សាទុក</button>
+        <button type="reset" class="btn3d btn btn-default btn-lg">សម្អាត <i class="fa-solid fa-arrows-rotate"></i></button>
+      <button type="submit" class="btn btn-success btn-lg btn3d">រក្សាទុក <i class="fa-solid fa-floppy-disk"></i></button>
+    
+      
     </div>
-    <p id="status"></p>
+   <p id="status" ></p> 
   </form>
 
  <script>
@@ -207,19 +280,23 @@ document.getElementById("signupForm").addEventListener("submit", async function 
 
   const form = e.target;
   const status = document.getElementById("status");
+  
   status.textContent = "⏳កំពុងរក្សាទុក...";
 
   const formData = new FormData(form);
-  const imageFile = formData.get("image");
+ const imageInput = document.querySelector('input[name="image"]');
+const imageFile = imageInput.files && imageInput.files[0];
 
-  if (!imageFile || !imageFile.type.startsWith("image/")) {
-    status.textContent = "❌ សូមជ្រើសរូបភាព (.jpg, .png)";
-    return;
-  }
+if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|png)$/)) {
+  status.textContent = "❌ សូមជ្រើសរូបភាព (.jpg, .png)";
+  return;
+}
+
 
   const reader = new FileReader();
   reader.onload = async function () {
     const imageBase64 = reader.result;
+
 
     const data = new URLSearchParams();
     formData.forEach((value, key) => {
@@ -247,6 +324,26 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   };
   reader.readAsDataURL(imageFile);
 });
+
+  // Reset filename display when form is reset
+  document.getElementById("signupForm").addEventListener("reset", function () {
+    document.getElementById("file-name").textContent = "មិនទាន់ជ្រើសរូបភាព";
+     document.getElementById("file-name").style.color = "red";
+  });
+
+  function showFileName(input) {
+  const fileNameSpan = document.getElementById("file-name");
+
+  if (input.files && input.files[0]) {
+    fileNameSpan.textContent = "​បានជ្រើសសរូបភាពរួច ✅";
+    fileNameSpan.style.color = "green"; // ✅ Set to green when selected
+  } else {
+    fileNameSpan.textContent = "មិនទាន់ជ្រើសរូបភាព";
+    fileNameSpan.style.color = "red"; // Optional: red when none
+  }
+}
+  
+  
 </script>
 
   <!-- sitename-->
