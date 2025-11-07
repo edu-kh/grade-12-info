@@ -286,9 +286,9 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   submitButton.disabled = true;
   submitButton.style.opacity = "0.6";
   submitButton.style.cursor = "not-allowed";
-  submitButton.innerHTML = "កំពុងផ្ញើ... ⏳";
+  submitButton.innerHTML = "⏳កំពុងរក្សាទុក...";
 
-  status.textContent = "⏳ កំពុងរក្សាទុក...";
+ // status.textContent = "⏳ កំពុងរក្សាទុក...";
 
   const formData = new FormData(form);
   const imageInput = document.querySelector('input[name="image"]');
