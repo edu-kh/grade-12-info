@@ -280,23 +280,32 @@ document.getElementById("signupForm").addEventListener("submit", async function 
 
   const form = e.target;
   const status = document.getElementById("status");
-  
-  status.textContent = "⏳កំពុងរក្សាទុក...";
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  // Disable the button while sending
+  submitButton.disabled = true;
+  submitButton.style.opacity = "0.6";
+  submitButton.style.cursor = "not-allowed";
+  submitButton.innerHTML = "កំពុងផ្ញើ... ⏳";
+
+  status.textContent = "⏳ កំពុងរក្សាទុក...";
 
   const formData = new FormData(form);
- const imageInput = document.querySelector('input[name="image"]');
-const imageFile = imageInput.files && imageInput.files[0];
+  const imageInput = document.querySelector('input[name="image"]');
+  const imageFile = imageInput.files && imageInput.files[0];
 
-if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|png)$/)) {
-  status.textContent = "❌ សូមជ្រើសរូបភាព (.jpg, .png)";
-  return;
-}
-
+  if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|png)$/)) {
+    status.textContent = "❌ សូមជ្រើសរូបភាព (.jpg, .png)";
+    submitButton.disabled = false;
+    submitButton.style.opacity = "1";
+    submitButton.style.cursor = "pointer";
+    submitButton.innerHTML = 'រក្សាទុក <i class="fa-solid fa-floppy-disk"></i>';
+    return;
+  }
 
   const reader = new FileReader();
   reader.onload = async function () {
     const imageBase64 = reader.result;
-
 
     const data = new URLSearchParams();
     formData.forEach((value, key) => {
@@ -321,30 +330,35 @@ if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|p
     } catch (err) {
       status.textContent = "❌ បញ្ហា: " + err.message;
     }
+
+    // Re-enable the button after sending
+    submitButton.disabled = false;
+    submitButton.style.opacity = "1";
+    submitButton.style.cursor = "pointer";
+    submitButton.innerHTML = 'រក្សាទុក <i class="fa-solid fa-floppy-disk"></i>';
   };
+
   reader.readAsDataURL(imageFile);
 });
 
-  // Reset filename display when form is reset
-  document.getElementById("signupForm").addEventListener("reset", function () {
-    document.getElementById("file-name").textContent = "មិនទាន់ជ្រើសរូបភាព";
-     document.getElementById("file-name").style.color = "red";
-  });
+// Reset filename display when form is reset
+document.getElementById("signupForm").addEventListener("reset", function () {
+  document.getElementById("file-name").textContent = "មិនទាន់ជ្រើសរូបភាព";
+  document.getElementById("file-name").style.color = "red";
+});
 
-  function showFileName(input) {
+function showFileName(input) {
   const fileNameSpan = document.getElementById("file-name");
-
   if (input.files && input.files[0]) {
-    fileNameSpan.textContent = "​បានជ្រើសរូបភាពហើយ ✅";
-    fileNameSpan.style.color = "green"; // ✅ Set to green when selected
+    fileNameSpan.textContent = "បានជ្រើសរូបភាពហើយ ✅";
+    fileNameSpan.style.color = "green";
   } else {
     fileNameSpan.textContent = "មិនទាន់ជ្រើសរូបភាព";
-    fileNameSpan.style.color = "red"; // Optional: red when none
+    fileNameSpan.style.color = "red";
   }
 }
-  
-  
 </script>
+
 
   <!-- sitename-->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -358,4 +372,3 @@ if (!imageFile || imageFile.size === 0 || !imageFile.type.match(/^image\/(jpeg|p
   </script>
 </body>
 </html>
-
