@@ -37,6 +37,7 @@
     }
      .form-header h2 {
      font-size: 0.96rem;
+	 font-weight: normal;
     }
     
     .logo {
@@ -208,7 +209,7 @@
   <form id="signupForm">
     <div class="form-header">
       <img src="moeys.png" alt="Logo" class="logo">
-     <h2 class="sitename">ព័ត៌មានសិស្ស<span class="auto-input ti"></span></h2>
+     <h2 class="sitename">ព័ត៌មានបេក្ខភាពប្រឡងទី១២<!--<span class="auto-input ti"></span>--></h2>
     </div>
     <div class="form-row">
       <label>ឈ្មោះសិស្ស<input type="text" name="name"  placeholder="នាមត្រកូល នាមខ្លួន" required></label>
@@ -264,6 +265,12 @@
   <input type="file" name="image" class="custom-file-input" accept=".jpg,.jpeg,.png" required onchange="showFileName(this)">
 </label>
 <span class="filename-display" id="file-name" style="color:red">មិនទាន់ជ្រើសរូបភាព</span>
+
+<!-- Add this preview container below the filename span -->
+<div id="image-preview-container" style="display: none; margin-top: 15px; text-align: center;">
+  <img id="image-preview" src="" alt="Image Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+</div>
+
 </div>
     </div>
     <div class="form-buttons">
@@ -346,16 +353,36 @@ document.getElementById("signupForm").addEventListener("submit", async function 
 document.getElementById("signupForm").addEventListener("reset", function () {
   document.getElementById("file-name").textContent = "មិនទាន់ជ្រើសរូបភាព";
   document.getElementById("file-name").style.color = "red";
+  
+  // Clear the image preview on reset
+  document.getElementById("image-preview-container").style.display = "none";
+  document.getElementById("image-preview").src = "";
 });
 
 function showFileName(input) {
   const fileNameSpan = document.getElementById("file-name");
+  const previewContainer = document.getElementById("image-preview-container");
+  const previewImage = document.getElementById("image-preview");
+
   if (input.files && input.files[0]) {
     fileNameSpan.textContent = "បានជ្រើសរូបភាពហើយ ✅";
     fileNameSpan.style.color = "green";
+    
+    // Create a preview of the selected image
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      previewImage.src = e.target.result;
+      previewContainer.style.display = "block";
+    };
+    reader.readAsDataURL(input.files[0]);
+
   } else {
     fileNameSpan.textContent = "មិនទាន់ជ្រើសរូបភាព";
     fileNameSpan.style.color = "red";
+    
+    // Hide the preview if no image is selected
+    previewContainer.style.display = "none";
+    previewImage.src = "";
   }
 }
 </script>
