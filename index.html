@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Battambang&family=Moul&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>ព័ត៌មានសិស្សទិ១២</title>
+  <title>ព័ត៌មានសិស្សទី៩</title>
   
   <style>
     body {
@@ -16,6 +16,7 @@
       padding: 10px;
       font-weight: 400;
       font-style: normal;
+      
     }
     form {
        background: rgba(255, 255, 255, 0.15);
@@ -26,6 +27,7 @@
       margin: 0px auto;
       border-radius: 8px;
       box-shadow: 0 0 10px #ccc;
+     
     }
 
      .form-header {
@@ -33,11 +35,11 @@
       align-items: center;
       gap: 15px;
       margin-bottom: 2rem;
-      
+       
     }
      .form-header h2 {
      font-size: 0.96rem;
-	 font-weight: normal;
+     font-weight: normal;
     }
     
     .logo {
@@ -69,6 +71,77 @@
       border-radius: 5px;
        font-family: "Battambang", system-ui;
         font-size: 1rem;
+    }
+    /* Custom dropdown: replaces native <select> so it renders
+       identically on mobile and desktop (no OS picker on mobile) */
+    .custom-select {
+      position: relative;
+      margin-top: 5px;
+      font-family: "Battambang", system-ui;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .custom-select-trigger {
+      padding: 8px 30px 8px 8px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      min-height: 1.2em;
+      color: #888;
+    }
+    .custom-select-trigger.has-value {
+      color: #000;
+    }
+    .custom-select-trigger::after {
+      content: "\f078";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8rem;
+      color: #666;
+      transition: transform 0.2s ease;
+    }
+    .custom-select.open .custom-select-trigger::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .custom-select-trigger:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 1px;
+    }
+    .custom-select-options {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .custom-select.open .custom-select-options {
+      display: block;
+    }
+    .custom-select-option {
+      padding: 8px 10px;
+      cursor: pointer;
+      color: #000;
+    }
+    .custom-select-option:hover,
+    .custom-select-option.highlighted {
+      background: #e6f0ff;
+    }
+    .custom-select-option.selected {
+      background: #d8ecfd;
+      font-weight: bold;
     }
     .options {
       display: flex;
@@ -202,14 +275,68 @@
 	background-color: #bab8b8;
 }
 
+/* DOB Flex Container and Modal Styles */
+.dob-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+.dob-container label {
+  flex: 1;
+  width: 50px;
+}
 
+.popup-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  font-family: "Battambang", system-ui;
+}
+.popup-grid {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+.popup-grid-4-rows-month {
+  grid-template-columns: repeat(3, 1fr); /* 3 columns x 4 rows = 12 items */
+}
+.popup-grid-4-rows-year {
+  grid-template-columns: repeat(3, 1fr); /* 3 columns x 4 rows = 12 items */
+}
+.popup-item {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.popup-item:hover {
+  background-color: #007bff;
+  color: white;
+}
   </style>
 </head>
 <body>
   <form id="signupForm">
     <div class="form-header">
       <img src="moeys.png" alt="Logo" class="logo">
-     <h2 class="sitename">ព័ត៌មានបេក្ខភាពប្រឡងទី១២<!--<span class="auto-input ti"></span>--></h2>
+     <h2 class="sitename">ព័ត៌មានបេក្ខភាពប្រឡងទី៩<!--<span class="auto-input ti"></span>--></h2>
     </div>
     <div class="form-row">
       <label>ឈ្មោះសិស្ស<input type="text" name="name"  placeholder="នាមត្រកូល នាមខ្លួន" required></label>
@@ -220,21 +347,34 @@
         </div>
       </label>
     </div>
+    
     <div class="form-row">
-      <label>ថ្ងៃខែឆ្នាំកំណើត<input type="date" name="dob"  required></label>
-      <label>ទីកន្លែងកំណើត<input type="text" name="pob"​ value="ខេត្តព្រះសីហនុ" required></label>
+      <label style="flex: 2; min-width: 250px;">ថ្ងៃខែឆ្នាំកំណើត
+        <div class="dob-container">
+          <label><input type="number" name="day" placeholder="ថ្ងៃទី" required></label>
+          <label><input type="text" id="dob-month-input" name="mon" placeholder="ខែ" readonly required></label>
+          <label><input type="text" id="dob-year-input" name="yea" placeholder="ឆ្នាំ" readonly required></label>
+        </div>
+      </label>
+      <label style="flex: 1; min-width: 150px;">ទីកន្លែងកំណើត<input type="text" name="pob" value="ខេត្តព្រះសីហនុ" required></label>
     </div>
+    
     <div class="form-row">
       <label>រៀនថ្នាក់ទី
-        <select name="grade" required>
-      <option value="" disabled selected>ជ្រើសរើស</option>
-        <option>12A</option>
-        <option>12B</option>
-        <option>12C</option>
-        <option>12D</option>
-        <option>12E</option>
-        <option>12F</option>
-        </select>
+        <div class="custom-select" id="grade-select">
+          <div class="custom-select-trigger" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">ជ្រើសរើស</div>
+          <div class="custom-select-options" role="listbox">
+            <div class="custom-select-option" data-value="9A" role="option">9A</div>
+            <div class="custom-select-option" data-value="9B" role="option">9B</div>
+            <div class="custom-select-option" data-value="9C" role="option">9C</div>
+            <div class="custom-select-option" data-value="9D" role="option">9D</div>
+            <div class="custom-select-option" data-value="9E" role="option">9E</div>
+            <div class="custom-select-option" data-value="9F" role="option">9F</div>
+            <div class="custom-select-option" data-value="9G" role="option">9G</div>
+            <div class="custom-select-option" data-value="9H" role="option">9H</div>
+          </div>
+          <input type="hidden" name="grade" id="grade-hidden-input" required>
+        </div>
       </label>
       <label>
         <div class="options">ភាសា
@@ -243,12 +383,7 @@
         </div>
       </label>
     </div>
-   <div class="form-row triple">
-      <label>សម័យប្រឡងបឋមភូមិ<input type="date" name="date_exam"  required></label>
-		<label>មណ្ឌលប្រឡងបឋមភូមិ<input type="text" name="school_exam" value="វិ. ហស មិត្តភាព" required></label>
-      <label>លេខបន្ទប់<input type="number" name="room_no" required></label>
-      <label>លេខតុ<input type="number" name="table_no" required></label>
-    </div> 
+   
     <div class="form-row">
       <label>ឈ្មោះឪពុក<input type="text" name="father_name" required></label>
       <label>មុខរបរឪពុក<input type="text" name="father_job" required></label>
@@ -279,10 +414,66 @@
     
       
     </div>
-   <!--<p id="status" ></p> -->
+  <!--- <p id="status" ></p> -->
   </form>
 
- <script>
+  <div id="monthModal" class="popup-modal">
+    <div class="popup-content">
+      <h3 style="margin-top:0; text-align:center;">ជ្រើសរើសខែ</h3>
+      <div class="popup-grid popup-grid-4-rows-month" id="monthGrid"></div>
+    </div>
+  </div>
+
+  <div id="yearModal" class="popup-modal">
+    <div class="popup-content">
+      <h3 style="margin-top:0; text-align:center;">ជ្រើសរើសឆ្នាំ</h3>
+      <div class="popup-grid popup-grid-4-rows-year" id="yearGrid"></div>
+    </div>
+  </div>
+
+<script>
+// Month and Year Popup Setup
+const monthModal = document.getElementById("monthModal");
+const yearModal = document.getElementById("yearModal");
+const monthInput = document.getElementById("dob-month-input");
+const yearInput = document.getElementById("dob-year-input");
+
+// Generate Month grid (1 to 12)
+const monthGrid = document.getElementById("monthGrid");
+for (let i = 1; i <= 12; i++) {
+  const item = document.createElement("div");
+  item.className = "popup-item";
+  item.textContent = i;
+  item.addEventListener("click", function() {
+    monthInput.value = i;
+    monthModal.style.display = "none";
+  });
+  monthGrid.appendChild(item);
+}
+
+// Generate Year grid (2005 to 2016)
+const yearGrid = document.getElementById("yearGrid");
+for (let i = 2005; i <= 2016; i++) {
+  const item = document.createElement("div");
+  item.className = "popup-item";
+  item.textContent = i;
+  item.addEventListener("click", function() {
+    yearInput.value = i;
+    yearModal.style.display = "none";
+  });
+  yearGrid.appendChild(item);
+}
+
+// Show Modals on Input click
+monthInput.addEventListener("click", () => monthModal.style.display = "block");
+yearInput.addEventListener("click", () => yearModal.style.display = "block");
+
+// Close modals when clicking outside
+window.addEventListener("click", function(e) {
+  if (e.target === monthModal) monthModal.style.display = "none";
+  if (e.target === yearModal) yearModal.style.display = "none";
+});
+
 document.getElementById("signupForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -335,7 +526,7 @@ document.getElementById("signupForm").addEventListener("submit", async function 
     });
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzF2-6SaoCYMJl2U4RVBt-nMKT2GaeuMw_kavgcEbhdpx_YFudQHzOuAQK_Mqz6Z2Bs/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycby-RSi6KcqeJS_OpH-VfkLPreynAr4oVrW8AEqmoiAmrekFTn8sPDPyMZKPvsqx81Ao/exec", {
         method: "POST",
         body: data,
       });
@@ -379,7 +570,6 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   reader.readAsDataURL(imageFile);
 });
 
-// Reset filename display when form is reset
 document.getElementById("signupForm").addEventListener("reset", function () {
   document.getElementById("file-name").textContent = "មិនទាន់ជ្រើសរូបភាព";
   document.getElementById("file-name").style.color = "red";
@@ -415,20 +605,82 @@ function showFileName(input) {
     previewImage.src = "";
   }
 }
+
+// Custom dropdown (replaces native <select> for consistent
+// look on both mobile and desktop)
+(function () {
+  const wrapper = document.getElementById("grade-select");
+  const trigger = wrapper.querySelector(".custom-select-trigger");
+  const optionsList = wrapper.querySelector(".custom-select-options");
+  const options = wrapper.querySelectorAll(".custom-select-option");
+  const hiddenInput = document.getElementById("grade-hidden-input");
+  const placeholderText = "ជ្រើសរើស";
+
+  function closeDropdown() {
+    wrapper.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+  }
+
+  function openDropdown() {
+    wrapper.classList.add("open");
+    trigger.setAttribute("aria-expanded", "true");
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    wrapper.classList.contains("open") ? closeDropdown() : openDropdown();
+  });
+
+  trigger.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      wrapper.classList.contains("open") ? closeDropdown() : openDropdown();
+    } else if (e.key === "Escape") {
+      closeDropdown();
+    }
+  });
+
+  options.forEach(function (opt) {
+    opt.addEventListener("click", function () {
+      options.forEach((o) => o.classList.remove("selected"));
+      opt.classList.add("selected");
+      trigger.textContent = opt.textContent;
+      trigger.classList.add("has-value");
+      hiddenInput.value = opt.getAttribute("data-value");
+      closeDropdown();
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!wrapper.contains(e.target)) {
+      closeDropdown();
+    }
+  });
+
+  // Reset support: put the dropdown back to its placeholder state
+  document.getElementById("signupForm").addEventListener("reset", function () {
+    setTimeout(function () {
+      hiddenInput.value = "";
+      trigger.textContent = placeholderText;
+      trigger.classList.remove("has-value");
+      options.forEach((o) => o.classList.remove("selected"));
+      closeDropdown();
+    }, 0);
+  });
+})();
+
 </script>
 
 
-  <!-- sitename-->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
       var tyed = new Typed(".auto-input",{
-      strings: ["នៃវិទ្យាល័យ","ហ៊ុនសែនមិត្តភាព", "សម្រាប់ការប្រឡង","សញ្ញាបត្រមធ្យម","សិក្សាទុតិយភូមិ"],
+      strings: [" នៃវិ.ហស","មិត្តភាព"],
       typeSpeed: 150,
       
       loop: true
   })
   </script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
-
